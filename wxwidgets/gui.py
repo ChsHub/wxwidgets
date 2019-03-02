@@ -1,7 +1,5 @@
 from wx import BoxSizer, VERTICAL
 from wx import Frame, ID_ANY, App, EXPAND, Panel, EVT_CLOSE
-from wxwidgets.file_input import FileInput
-from wxwidgets.standard_button import StandardButton
 
 
 class GUI(Frame):

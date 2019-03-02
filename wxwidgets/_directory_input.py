@@ -1,8 +1,7 @@
 from utility.path_str import get_clean_path
-from wx import FileDialog, FD_OPEN, \
-    FD_FILE_MUST_EXIST, FD_MULTIPLE, ID_CANCEL, DirDialog
+from wx import ID_CANCEL, DirDialog
 
-from wxwidgets.input_widget import InputWidget
+from wxwidgets._input_widget import InputWidget
 
 
 class DirectoryInput(InputWidget):

@@ -1,8 +1,9 @@
 from setuptools import setup
+from wxwidgets import __version__
 
 setup(
     name='wxwidgets',
-    version='1.0',
+    version=__version__,
     description='wxpython based gui elements',
     author='Christian',
     author_email='christian1193@web.com',

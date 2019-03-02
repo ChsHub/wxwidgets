@@ -3,7 +3,7 @@ from wx import Panel, Colour, BoxSizer, HORIZONTAL, Button, StaticText, VERTICAL
 from wx.grid import Grid
 from wx.lib.mixins.listctrl import ColumnSorterMixin, ListCtrlAutoWidthMixin, TextEditMixin
 from webcolors import hex_to_rgb
-from wxwidgets.standard_button import StandardButton
+from wxwidgets._standard_button import StandardButton
 from logging import info, error
 
 
@@ -99,7 +99,6 @@ class Table(ListCtrl, ColumnSorterMixin, ListCtrlAutoWidthMixin, TextEditMixin):
         for i, column in enumerate(zip(*data_map)):
             self.SetColumnWidth(i, max(max(map(len, column)) * 6, self._default_width))
 
-        pass
 
     def clear(self):
         self.DeleteAllItems()
