@@ -1,4 +1,5 @@
-from distutils.core import setup
+from setuptools import setup
+
 setup(
     name='wxwidgets',
     version='1.0',
@@ -6,7 +7,5 @@ setup(
     author='Christian',
     author_email='christian1193@web.com',
     packages=['wxwidgets'],
-    install_requires=['wxPython']
+    install_requires=['wxPython', 'webcolors']
 )
-
-# C:/Python36-32/python.exe -m pip install -e .

@@ -1,5 +1,5 @@
-from wx import Panel, TextCtrl, Button, HORIZONTAL, BoxSizer, EVT_BUTTON
-
+from wx import Panel, TextCtrl, Button, HORIZONTAL, BoxSizer, EVT_BUTTON, TOP, EVT_TEXT_ENTER, TE_PROCESS_ENTER
+from wx.stc import STC_KEY_RETURN
 
 class InputWidget(Panel):
     _text_input = None
@@ -12,12 +12,14 @@ class InputWidget(Panel):
         self._callback = callback
 
         sizer = BoxSizer(HORIZONTAL)
-        self._text_input = TextCtrl(self, size=(400, 20))
+        self._text_input = TextCtrl(self, size=(400, 20), style=TE_PROCESS_ENTER)
         self._text_input.SetValue(initial)
-        sizer.Add(self._text_input)
+        self._text_input.Bind(EVT_TEXT_ENTER, self.button_callback)
+        sizer.Add(self._text_input, 1, flag=TOP, border=1)
 
-        button = Button(self, -1, size=(200, 22), label=text)
+        button = Button(self, size=(200, 22), label=text)
         button.Bind(EVT_BUTTON, self.button_callback)
+
         sizer.Add(button)
         self.SetSizer(sizer)
 
