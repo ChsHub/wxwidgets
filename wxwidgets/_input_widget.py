@@ -1,5 +1,4 @@
 from wx import Panel, TextCtrl, Button, HORIZONTAL, BoxSizer, EVT_BUTTON, TOP, EVT_TEXT_ENTER, TE_PROCESS_ENTER
-from wx.stc import STC_KEY_RETURN
 
 class InputWidget(Panel):
     _text_input = None

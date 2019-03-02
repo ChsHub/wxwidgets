@@ -5,21 +5,37 @@ from wxwidgets._input_widget import InputWidget
 
 
 class DirectoryInput(InputWidget):
-    def __init__(self, parent, text, callback, file_type, text_open_file_title, text_open_file, initial="", reset=False):
-        super().__init__(parent, text, callback, initial, reset)
-        self._file_type = file_type
+    """
+    Simple widget for opening a directory
+    """
+    def __init__(self, parent, callback, text_button, text_title, initial="", reset=False):
+        """
+        Builds the widget
+        :param parent: Parent wx element
+        :param callback: Function, that receives the directory
+        :param text_button: Text is displayed on the "open-button"
+        :param text_title: Text is displayed in the window title
+        :param initial: Initial path
+        :param reset: Don't show last opened directory
+        """
+        super().__init__(parent, text_button, callback, initial, reset)
 
-        self._text_open_file_title = text_open_file_title
-        self._text_open_file = text_open_file
+        self._text_title = text_title
 
     def button_callback(self, event):
-        with DirDialog(parent=self, message=self._text_open_file_title, defaultPath="") as dialog:
+        """
+        Receive selection event after directory is selected
+        :param event: Event contains directory path
+        :return: None
+        """
+        with DirDialog(parent=self, message=self._text_title, defaultPath="") as dialog:
             if dialog.ShowModal() == ID_CANCEL:
-                return  # the user changed their mind
+                return  # The user changed their mind
             path = get_clean_path(dialog.Path)
 
+        # Display path
         if self._reset:
             self._text_input.SetValue("")
         else:
             self._text_input.SetValue(path)
-        self._callback(path=path)
+        self._callback(path)

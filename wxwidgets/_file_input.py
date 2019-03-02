@@ -7,7 +7,21 @@ from wxwidgets._input_widget import InputWidget
 
 
 class FileInput(InputWidget):
+    """
+    Widget for file input
+    """
     def __init__(self, parent, text, callback, file_type, text_open_file_title, text_open_file, initial="", reset=False):
+        """
+
+        :param parent:
+        :param text:
+        :param callback:
+        :param file_type:
+        :param text_open_file_title:
+        :param text_open_file:
+        :param initial:
+        :param reset:
+        """
         super().__init__(parent, text, callback, initial, reset)
         self._file_type = file_type
 
