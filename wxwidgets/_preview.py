@@ -1,10 +1,10 @@
-from wx import Panel, Colour, BoxSizer, HORIZONTAL, Button, StaticText, VERTICAL, EXPAND, ListCtrl, LC_REPORT, \
-    BORDER_SUNKEN, TOP, EVT_LIST_COL_CLICK, LIST_AUTOSIZE, EVT_LIST_END_LABEL_EDIT
-from wx.grid import Grid
-from wx.lib.mixins.listctrl import ColumnSorterMixin, ListCtrlAutoWidthMixin, TextEditMixin
-from webcolors import hex_to_rgb
-from wxwidgets._standard_button import StandardButton
 from logging import info, error
+
+from webcolors import hex_to_rgb
+from wx import Panel, Colour, BoxSizer, HORIZONTAL, VERTICAL, EXPAND, ListCtrl, LC_REPORT, \
+    BORDER_SUNKEN, TOP, EVT_LIST_COL_CLICK, EVT_LIST_END_LABEL_EDIT
+from wx.lib.mixins.listctrl import ColumnSorterMixin, ListCtrlAutoWidthMixin, TextEditMixin
+from wxwidgets._simple_button import SimpleButton
 
 
 class Table(ListCtrl, ColumnSorterMixin, ListCtrlAutoWidthMixin, TextEditMixin):
@@ -82,9 +82,10 @@ class Table(ListCtrl, ColumnSorterMixin, ListCtrlAutoWidthMixin, TextEditMixin):
     def update_cell(self, data, column, row=0):
         if not data:
             raise ValueError
+        if row >= self.row_index:
+            self.add_line([''] * self.GetColumnCount())
+
         self.SetItem(row, column, data)
-        pass
-        pass
         # self.update_width()
 
     def update_row(self, row_data, row):
@@ -98,7 +99,6 @@ class Table(ListCtrl, ColumnSorterMixin, ListCtrlAutoWidthMixin, TextEditMixin):
         data_map = self.itemDataMap.values()
         for i, column in enumerate(zip(*data_map)):
             self.SetColumnWidth(i, max(max(map(len, column)) * 6, self._default_width))
-
 
     def clear(self):
         self.DeleteAllItems()
@@ -122,7 +122,7 @@ class Preview(Panel):
         button_frame = Panel(self)
         button_sizer = BoxSizer(HORIZONTAL)
         for callback, text in buttons:
-            button_sizer.Add(StandardButton(button_frame, text=text, callback=callback), flag=TOP, border=border)
+            button_sizer.Add(SimpleButton(button_frame, text_button=text, callback=callback), flag=TOP, border=border)
         button_frame.SetSizer(button_sizer)
         # ALIGN
         sizer = BoxSizer(VERTICAL)

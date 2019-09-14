@@ -1,7 +1,4 @@
-from utility.path_str import get_clean_path
-from wx import FileDialog, FD_OPEN, \
-    FD_FILE_MUST_EXIST, FD_MULTIPLE, ID_CANCEL
-
+from wx import FileDialog, FD_OPEN, FD_FILE_MUST_EXIST, FD_MULTIPLE, ID_CANCEL
 
 from wxwidgets._input_widget import InputWidget
 
@@ -10,31 +7,38 @@ class FileInput(InputWidget):
     """
     Widget for file input
     """
-    def __init__(self, parent, text, callback, file_type, text_open_file_title, text_open_file, initial="", reset=False):
-        """
 
-        :param parent:
-        :param text:
-        :param callback:
-        :param file_type:
-        :param text_open_file_title:
+    def __init__(self, parent, callback, text_button: str, text_title: str,
+                 text_open_file: str, file_type: str = "*.*", initial: str = "", reset: bool = False):
+        """
+        Build the widget
+        :param parent: Parent wx element
+        :param callback: Function, that receives the directory and files
+        :param text_button: Text is displayed on the "open-button"
+        :param text_title:
         :param text_open_file:
-        :param initial:
-        :param reset:
+        :param file_type: File types that are displayed (pattern *.type1,*.type2), All types by default
+        :param initial: Initial path
+        :param reset: If true, don't show last opened directory
         """
-        super().__init__(parent, text, callback, initial, reset)
+        super().__init__(parent, callback, text_button, initial, reset)
         self._file_type = file_type
-
-        self._text_open_file_title = text_open_file_title
+        self._text_title = text_title
         self._text_open_file = text_open_file
 
     def button_callback(self, event):
-        with FileDialog(self, self._text_open_file_title, "", "",
+        """
+        Receive selection event after files are selected, and pass to callback function
+        :param event: Event contains directory and files
+        :return: None
+        """
+
+        with FileDialog(self, self._text_title, "", "",
                         wildcard=self._text_open_file + '(' + self._file_type + ')|' + self._file_type,
                         style=FD_OPEN | FD_FILE_MUST_EXIST | FD_MULTIPLE) as dialog:
             if dialog.ShowModal() == ID_CANCEL:
                 return  # the user changed their mind
-            path = get_clean_path(dialog.Directory)
+            path = dialog.Directory
             files = dialog.Filenames
 
         if self._reset:

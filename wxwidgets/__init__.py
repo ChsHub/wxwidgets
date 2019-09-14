@@ -4,6 +4,6 @@ from ._simple_sizer import SimpleSizer
 from ._input_widget import InputWidget
 from ._preview import Preview, Table
 from ._simple_input import SimpleInput
-from ._standard_button import StandardButton
+from ._simple_button import SimpleButton
 
 __version__ = "1.0.2"
