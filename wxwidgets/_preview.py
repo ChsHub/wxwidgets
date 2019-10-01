@@ -82,7 +82,7 @@ class Table(ListCtrl, ColumnSorterMixin, ListCtrlAutoWidthMixin, TextEditMixin):
     def update_cell(self, data, column, row=0):
         if not data:
             raise ValueError
-        if row >= self.row_index:
+        if row > self.row_index:
             self.add_line([''] * self.GetColumnCount())
 
         self.SetItem(row, column, data)

@@ -6,4 +6,4 @@ from ._preview import Preview, Table
 from ._simple_input import SimpleInput
 from ._simple_button import SimpleButton
 
-__version__ = "1.0.2"
+__version__ = '1.0.4'
