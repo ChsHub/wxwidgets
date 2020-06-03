@@ -12,7 +12,6 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     author='ChsHub',
-    author_email='christian1193@web.com',
     url="https://github.com/ChsHub/wxwidgets",
     packages=['wxwidgets'],
     install_requires=['wxPython', 'webcolors'],
