@@ -20,5 +20,5 @@ setup(
 )
 
 # Upload commands
-# C:\Python37\python.exe setup.py sdist bdist_wheel
-# C:\Python37\python.exe -m twine upload dist/*
+# python setup.py sdist bdist_wheel
+# python -m twine upload dist/*
