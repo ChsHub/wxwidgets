@@ -1,5 +1,6 @@
 import setuptools
 from distutils.core import setup
+
 from wxwidgets import __version__
 
 with open("README.md", "r") as f:
@@ -14,9 +15,9 @@ setup(
     author='ChsHub',
     url="https://github.com/ChsHub/wxwidgets",
     packages=['wxwidgets'],
-    install_requires=['wxPython', 'webcolors'],
+    install_requires=['wxPython'],
     license='MIT License',
-    classifiers = ['Programming Language :: Python :: 3']
+    classifiers=['Programming Language :: Python :: 3']
 )
 
 # Upload commands

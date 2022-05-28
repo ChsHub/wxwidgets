@@ -1,10 +1,20 @@
 from logging import info, error
 
-from webcolors import hex_to_rgb
 from wx import Panel, Colour, BoxSizer, HORIZONTAL, VERTICAL, EXPAND, ListCtrl, LC_REPORT, \
     BORDER_SUNKEN, TOP, EVT_LIST_COL_CLICK, EVT_LIST_END_LABEL_EDIT
 from wx.lib.mixins.listctrl import ColumnSorterMixin, ListCtrlAutoWidthMixin, TextEditMixin
 from wxwidgets._simple_button import SimpleButton
+
+
+def hex_to_rgb(hex_color: str) -> tuple:
+    """
+    Convert hex color string to int RGB values
+    :param hex_color: Hex color string
+    :return: RGB/RGBA int tuple
+    """
+    rgb = hex_color.strip('#')
+    rgb = bytearray.fromhex(rgb)
+    return tuple(int(b) for b in rgb)
 
 
 class Table(ListCtrl, ColumnSorterMixin, ListCtrlAutoWidthMixin, TextEditMixin):
