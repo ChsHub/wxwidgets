@@ -8,8 +8,17 @@ class FileInput(InputWidget):
     Widget for file input
     """
 
-    def __init__(self, parent, callback, text_button: str, text_title: str,
-                 text_open_file: str, file_type: str = "*.*", initial: str = "", reset: bool = False):
+    def __init__(self,
+                 parent,
+                 callback,
+                 text_button: str,
+                 text_title: str,
+                 text_open_file: str,
+                 file_type: str = "*.*",
+                 initial: str = "",
+                 reset: bool = False,
+                 text_color: tuple=(255, 255, 255),
+                 font=None):
         """
         Build the widget
         :param parent: Parent wx element
